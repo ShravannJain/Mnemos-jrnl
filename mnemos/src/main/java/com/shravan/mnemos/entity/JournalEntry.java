@@ -1,6 +1,19 @@
 package com.shravan.mnemos.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+
+
+@Document(collection = "journal_entries")
 public class JournalEntry {
+
+    @Id
+    private String id;
+    private String title;
+
+
+
     public String getTitle() {
         return title;
     }
@@ -9,16 +22,15 @@ public class JournalEntry {
         this.title = title;
     }
 
-    public long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    private long id;
-    private String title;
 
     public String getContent() {
         return content;
