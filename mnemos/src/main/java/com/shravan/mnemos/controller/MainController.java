@@ -20,15 +20,19 @@ import java.util.*;
 public class MainController {
     @Autowired
     private JournalService journalService;
-    @GetMapping
-    public List<JournalEntry> getAll(){
-        return journalService.getAll();
-    }
     /*
     So what this ResponseEntity does?  Normally what happens is even if my request hit the backend it treats as 200 ,
     even if it doenst find the required data. So am using this ResponseEntity class here.
     So i can set various condtion so it gives specific status code. haha :)
     * */
+    @GetMapping
+    public ResponseEntity<?> getAll(){
+        List<JournalEntry> checkAll = journalService.getAll();
+        if(checkAll!=null && !checkAll.isEmpty()){
+            return new ResponseEntity<>(checkAll,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
     @PostMapping
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry entry){
         try {
