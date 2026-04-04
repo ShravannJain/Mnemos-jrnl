@@ -2,10 +2,12 @@ package com.shravan.mnemos.service;
 
 import com.shravan.mnemos.entity.JournalEntry;
 import com.shravan.mnemos.repository.JournalEntryRepo;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JournalService {
@@ -18,4 +20,13 @@ public class JournalService {
         return journalEntryRepo.findAll();
     }
 
+  public Optional<JournalEntry> findById(ObjectId id){
+        return journalEntryRepo.findById(id);
+  }
+  public void deleteById(ObjectId id){
+         journalEntryRepo.deleteById(id);
+  }
+    public void updatePut(JournalEntry journalEntry){
+         journalEntryRepo.save(journalEntry);
+    }
 }

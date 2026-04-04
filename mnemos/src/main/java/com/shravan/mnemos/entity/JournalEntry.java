@@ -1,17 +1,38 @@
 package com.shravan.mnemos.entity;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 
 @Document(collection = "journal_entries")
 public class JournalEntry {
 
+
     @Id
-    private String id;
+    private ObjectId id;
     private String title;
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    private LocalDateTime date;
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
 
     public String getTitle() {
@@ -23,13 +44,6 @@ public class JournalEntry {
     }
 
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
 
     public String getContent() {
