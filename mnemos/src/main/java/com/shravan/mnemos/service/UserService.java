@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserEntryRepo userEntryRepo;
+    @Autowired
     private PasswordEncoder passwordEncoder;
     public Users saveItAll(Users users){
         String plainPassword = users.getPassword();
