@@ -35,7 +35,7 @@ public class UserService {
     public void updatePut(Users users){
         userEntryRepo.save(users);
     }
-    public Users findByUserName(String userName){
+    public Optional<Users> findByUserName(String userName){
         return userEntryRepo.findByUserName(userName);
     }
 }
