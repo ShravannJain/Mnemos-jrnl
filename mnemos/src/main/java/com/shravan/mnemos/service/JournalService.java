@@ -13,6 +13,8 @@ import java.util.Optional;
 public class JournalService {
     @Autowired
     private JournalEntryRepo journalEntryRepo;
+    @Autowired
+    private  UserService userService;
     public JournalEntry saveItAll(JournalEntry journalEntry){
         return journalEntryRepo.save(journalEntry);
     }

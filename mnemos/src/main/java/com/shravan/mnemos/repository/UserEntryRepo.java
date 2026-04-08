@@ -4,6 +4,9 @@ import com.shravan.mnemos.entity.Users;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Optional;
+
 public interface UserEntryRepo extends MongoRepository<Users, ObjectId> {
-    Users findByUserName(String username);
+//    Users findByUserName(String username);
+    Optional<Users> findByUserName(String username);
 }

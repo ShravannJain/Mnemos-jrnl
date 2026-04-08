@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +21,8 @@ public class JournalEntry {
     private ObjectId id;
     private String title;
     private String content;
-
     private LocalDateTime date;
-
+    @DBRef
+    private Users users;
 
 }
