@@ -22,7 +22,19 @@ public class UserController {
     public List<Users> getAllUsers(){
         return userService.getAll();
     }
-
+// temp for register purpose
+    @PostMapping("/register")
+    public  ResponseEntity<Users> registerUser(@RequestBody Users newUser){
+        try {
+            if(newUser.getPassword()==null || newUser.getPassword().isEmpty()){
+                return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            Users savedUser = userService.saveItAll(newUser);
+            return  new ResponseEntity<>(savedUser,HttpStatus.CREATED);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @PostMapping
     public void createUser(@RequestBody Users users){
         userService.saveItAll(users);
