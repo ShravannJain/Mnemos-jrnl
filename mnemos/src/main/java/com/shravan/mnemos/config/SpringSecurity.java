@@ -22,12 +22,14 @@ public class SpringSecurity {
     // Injecting UserDetailsService is correct as it's a different bean.
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
-
+/*  This bean tells Spring to use BCrypt for password hashing and comparison.
+    During registration, we manually encode the password before saving.
+    During login, Spring uses this encoder to compare the entered password with the stored hashed password.*/
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
+/* his config tells Spring to use my UserDetailsService to fetch users and PasswordEncoder to verify passwords during login. */
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -37,7 +39,8 @@ public class SpringSecurity {
                 .passwordEncoder(passwordEncoder()); // Explicitly use the bean method
         return authenticationManagerBuilder.build();
     }
-
+/* this bean just tell or decide which APIs need login and how login works , here we can define what end point is allowed without
+* requiring to authenticate yourself */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
