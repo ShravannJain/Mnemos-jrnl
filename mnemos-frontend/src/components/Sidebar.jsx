@@ -72,10 +72,10 @@ export default function Sidebar({ entries, activeId, onSelect, onNewEntry, loadi
 
           {entries.map((entry) => (
             <div
-              key={entry.id}
+              key={entry._id}
               onClick={() => onSelect(entry)}
               className={`px-2 py-3 cursor-pointer transition-none group
-                ${activeId === entry.id
+                ${activeId === entry._id
                   ? 'bg-surface-bright'
                   : 'hover:bg-surface-bright'
                 }`}
@@ -84,7 +84,7 @@ export default function Sidebar({ entries, activeId, onSelect, onNewEntry, loadi
                 {formatDate(entry.date)}
               </p>
               <p className={`text-sm font-label leading-tight
-                ${activeId === entry.id ? 'text-on-surface' : 'text-on-surface-variant'}`}>
+                ${activeId === entry._id ? 'text-on-surface' : 'text-on-surface-variant'}`}>
                 {entry.title || 'Untitled'}
               </p>
             </div>

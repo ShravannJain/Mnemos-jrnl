@@ -63,6 +63,7 @@ export default function App() {
         const created = res.data
         setEntries(prev => [created, ...prev])
         setActiveEntry(created)
+        console.log("hlllll");
       }
     } catch (err) {
       setError('Failed to save. Check your connection.')
@@ -76,9 +77,14 @@ export default function App() {
     if (!window.confirm('Delete this entry? This cannot be undone.')) return
     try {
       await deleteEntry(activeEntry.id)
+      console.log(activeEntry.id);
+      
       setEntries(prev => prev.filter(e => e.id !== activeEntry.id))
       setActiveEntry(BLANK_ENTRY)
     } catch {
+        console.log("activeEntry:", activeEntry)
+  console.log("activeEntry.id:", activeEntry.id)
+  console.log("activeEntry._id:", activeEntry._id)
       setError('Failed to delete entry.')
     }
   }

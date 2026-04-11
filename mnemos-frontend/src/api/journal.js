@@ -20,7 +20,7 @@ export const createEntry = (entry) => api.post('/journal', entry)
 export const updateEntry = (id, entry) => api.put(`/journal/${id}`, entry)
 
 /** DELETE /journal/:id — delete entry */
-export const deleteEntry = (id) => api.delete(`/journal/${id}`)
+export const deleteEntry = (id) =>  api.delete(`/journal/${id.toString()}`)
 
 // ─── User Endpoints ───────────────────────────────────────────────────────────
 
