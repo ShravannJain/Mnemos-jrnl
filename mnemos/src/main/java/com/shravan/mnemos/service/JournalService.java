@@ -22,10 +22,10 @@ public class JournalService {
         return journalEntryRepo.findAll();
     }
 
-  public Optional<JournalEntry> findById(ObjectId id){
+  public Optional<JournalEntry> findById(String id){
         return journalEntryRepo.findById(id);
   }
-  public void deleteById(ObjectId id){
+  public void deleteById(String id){
          journalEntryRepo.deleteById(id);
   }
     public void updatePut(JournalEntry journalEntry){

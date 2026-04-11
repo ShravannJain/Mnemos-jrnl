@@ -1,69 +1,67 @@
-# Mnemos-jrnl 📓
+# Mnemos-jrnl
 
-A personal journaling REST API built with **Spring Boot** and **MongoDB**. This project is a learning journey into building scalable backend systems, focusing on CRUD operations, database relationships, and (eventually) secure authentication.
+Welcome to the Mnemos-jrnl project! This is a personal journaling application built with Spring Boot for the backend and React for the frontend.
 
-## 🚀 Current Project Status
-This project is currently **under active development**. 
+## Project Status
+This project is currently under development and serves as a demonstration of full-stack development.
 
-### Completed Features:
-- [x] **User Management**: Create, Read, Update, and Delete (CRUD) operations for users.
-- [x] **Journaling System**: Core logic for managing journal entries.
-- [x] **Database Integration**: Fully integrated with MongoDB using Spring Data MongoDB.
-- [x] **Relational Mapping**: implemented `@DBRef` to link Journal Entries to specific Users.
-- [x] **Lombok Integration**: Used to reduce boilerplate code (Getters, Setters, etc.).
+## Current Version Snapshot
+*(Space to add a screenshot of the current Journal app)*
 
-### 🛠 Tech Stack
-- **Backend:** Java 17+, Spring Boot 3.x
-- **Database:** MongoDB (NoSQL)
-- **Build Tool:** Maven
-- **Libraries:** Spring Web, Spring Data MongoDB, Lombok
+[Insert Image Here]
 
----
+## Key Features
+- Journaling: Create, read, update, and delete journal entries.
+- User Authentication: Secure user accounts.
+- Modern UI: A clean and intuitive user interface.
 
-## 🏗 Project Architecture
-The project follows a standard layered architecture:
-- **Controller Layer**: Handles HTTP requests and returns responses.
-- **Service Layer**: Contains business logic (the "brains" of the app).
-- **Repository Layer**: Interfaces with MongoDB using Spring Data.
-- **Entity Layer**: Defines the data models (`Users`, `JournalEntry`).
+## Tech Stack
+- **Backend:** Java, Spring Boot
+- **Frontend:** React, Vite
+- **Database:** MongoDB
 
----
-
-## 🚦 Getting Started
+## Getting Started
 
 ### Prerequisites
-- JDK 17 or higher
-- MongoDB (Running locally or on Atlas)
-- Maven
+*   Java Development Kit (JDK) 17+
+*   Maven
+*   MongoDB (running locally or accessible via MongoDB Atlas)
+*   Node.js and npm (or yarn)
 
-### Installation & Setup
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/ShravannJain/Mnemos-jrnl.git
-   cd Mnemos-jrnl/mnemos
-   ```
+### Backend Setup
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/ShravannJain/Mnemos-jrnl.git
+    cd Mnemos-jrnl/mnemos
+    ```
+2.  Configure your MongoDB connection in `src/main/resources/application.properties`. Replace the placeholder with your actual MongoDB URI:
+    ```properties
+    spring.data.mongodb.uri=mongodb://localhost:27017/mnemosdb 
+    ```
+3.  Run the Spring Boot application:
+    ```bash
+    ./mvnw spring-boot:run
+    ```
 
-2. **Configure Database:**
-   Update `src/main/resources/application.properties` with your MongoDB URI:
-   ```properties
-   spring.data.mongodb.uri=mongodb://localhost:27017/mnemosdb
-   ```
-
-3. **Run the application:**
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+### Frontend Setup
+1.  Navigate to the frontend directory:
+    ```bash
+    cd ../mnemos-frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install 
+    # or
+    # yarn install
+    ```
+3.  Start the development server:
+    ```bash
+    npm run dev
+    # or
+    # yarn dev
+    ```
 
 ---
 
-## 🗺 Roadmap (Learning Goals)
-- [ ] **Security**: Implement BCrypt password hashing.
-- [ ] **Authentication**: Add Spring Security for JWT-based auth.
-- [ ] **Validation**: Add request body validation (e.g., ensuring usernames aren't empty).
-- [ ] **Error Handling**: Implement a Global Exception Handler for cleaner API responses.
-- [ ] **Testing**: Write JUnit and Mockito tests for the Service layer.
-
----
-
-## 📜 License
-This project is for educational purposes. Feel free to explore and learn along!
+## Learning & Development
+This project was a great way to learn about building full-stack applications.
