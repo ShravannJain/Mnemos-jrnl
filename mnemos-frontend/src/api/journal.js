@@ -1,0 +1,31 @@
+import axios from 'axios'
+
+const api = axios.create({
+  baseURL: '',  // vite proxy handles /journal and /user → localhost:8080
+  headers: { 'Content-Type': 'application/json' },
+})
+
+// ─── Journal Endpoints ────────────────────────────────────────────────────────
+
+/** GET /journal — fetch all entries */
+export const getAllEntries = () => api.get('/journal')
+
+/** GET /journal/:id — fetch single entry */
+export const getEntryById = (id) => api.get(`/journal/${id}`)
+
+/** POST /journal — create new entry  { title, content } */
+export const createEntry = (entry) => api.post('/journal', entry)
+
+/** PUT /journal/:id — update entry { title?, content? } */
+export const updateEntry = (id, entry) => api.put(`/journal/${id}`, entry)
+
+/** DELETE /journal/:id — delete entry */
+export const deleteEntry = (id) => api.delete(`/journal/${id}`)
+
+// ─── User Endpoints ───────────────────────────────────────────────────────────
+
+/** POST /user/register — register { userName, password } */
+export const registerUser = (user) => api.post('/user/register', user)
+
+/** PUT /user — update user { userName, password } */
+export const updateUser = (user) => api.put('/user', user)
