@@ -6,9 +6,7 @@ Welcome to the Mnemos-jrnl project! This is a personal journaling application bu
 This project is currently under development and serves as a demonstration of full-stack development.
 
 ## Current Version Snapshot
-*(Space to add a screenshot of the current Journal app)*
-
-[Insert Image Here]
+<img width="1600" height="1280" alt="image" src="https://github.com/user-attachments/assets/29d38622-ae45-489d-b695-fe5a75fa5aef" />
 
 ## Key Features
 - Journaling: Create, read, update, and delete journal entries.
