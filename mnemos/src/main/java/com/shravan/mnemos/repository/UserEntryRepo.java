@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface UserEntryRepo extends MongoRepository<Users, ObjectId> {
+public interface UserEntryRepo extends MongoRepository<Users, String> {
 //    Users findByUserName(String username);
     Optional<Users> findByUserName(String username);
 }

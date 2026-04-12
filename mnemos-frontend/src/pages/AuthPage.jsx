@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { registerUser } from '../api/journal'
+import { registerUser, loginUser } from '../api/journal'
 
 export default function AuthPage({ onLogin }) {
   const [mode, setMode] = useState('login') // 'login' | 'register'
@@ -19,13 +19,20 @@ export default function AuthPage({ onLogin }) {
     try {
       if (mode === 'register') {
         await registerUser({ userName, password })
+        localStorage.setItem('mnemos_auth_user', userName)
+        localStorage.setItem('mnemos_auth_password', password)
+        console.log(userName);
+        onLogin(userName)
+      } else {
+        await loginUser({ userName, password }) // throws 401 if wrong credentials
+        localStorage.setItem('mnemos_auth_user', userName)
+        localStorage.setItem('mnemos_auth_password', password)
+        onLogin(userName)
       }
-      // For login: Spring Security not set up yet, just pass through
-      // Once you add Spring Security you'd call a /login endpoint here
-      onLogin(userName)
     } catch (err) {
       const status = err.response?.status
       if (status === 400) setError('Invalid details. Try again.')
+      else if (status === 401) setError('Incorrect username or password.')
       else if (status === 409) setError('Username already exists.')
       else setError('Something went wrong. Is the backend running?')
     } finally {

@@ -4,6 +4,26 @@ const api = axios.create({
   baseURL: '',  // vite proxy handles /journal and /user → localhost:8080
   headers: { 'Content-Type': 'application/json' },
 })
+export const loginUser = async ({ userName, password }) => {
+  const res = await axios.post('/user/login', { userName, password })
+  return res.data
+}
+
+// Add a request interceptor to include authentication headers
+api.interceptors.request.use(config => {
+  const userName = localStorage.getItem('mnemos_auth_user')
+  const password = localStorage.getItem('mnemos_auth_password')
+
+  if (userName && password) {
+    const base64Credentials = btoa(`${userName}:${password}`)
+    config.headers.Authorization = `Basic ${base64Credentials}`
+  }
+
+  return config
+}, error => {
+  // Do something with request error
+  return Promise.reject(error)
+})
 
 // ─── Journal Endpoints ────────────────────────────────────────────────────────
 

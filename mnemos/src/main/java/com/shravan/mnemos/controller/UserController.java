@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,9 +25,10 @@ public class UserController {
     }
 // temp for register purpose
     @PostMapping("/register")
-    public  ResponseEntity<Users> registerUser(@RequestBody Users newUser){
+    public  ResponseEntity<Users> registerUser(@RequestBody Users newUser ){
         try {
             if(newUser.getPassword()==null || newUser.getPassword().isEmpty()){
+                System.out.println("put something");
                 return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             Users savedUser = userService.saveItAll(newUser);
@@ -39,7 +41,16 @@ public class UserController {
     public void createUser(@RequestBody Users users){
         userService.saveItAll(users);
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody Users loginRequest) {
+        Optional<Users> userInDb = userService.findByUserName(loginRequest.getUserName());
 
+        if (userInDb.isPresent() && userService.checkPassword(loginRequest.getPassword(), userInDb.get().getPassword())) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+    }
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody Users userDetailsFromRequest){ // Renamed for clarity
         // Fetch the user from the database using their username. This returns an Optional<Users>.

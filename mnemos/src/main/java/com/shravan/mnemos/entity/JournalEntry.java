@@ -19,6 +19,7 @@ public class JournalEntry {
 
     @Id
     private String id;
+    private String userName;
     private String title;
     private String content;
     private LocalDateTime date;

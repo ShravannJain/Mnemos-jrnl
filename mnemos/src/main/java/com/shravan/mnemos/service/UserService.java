@@ -25,11 +25,13 @@ public class UserService {
     public List<Users> getAll(){
         return userEntryRepo.findAll();
     }
-
-    public Optional<Users> findById(ObjectId id){
+    public boolean checkPassword(String rawPassword, String hashedPassword) {
+        return passwordEncoder.matches(rawPassword, hashedPassword);
+    }
+    public Optional<Users> findById(String id){
         return userEntryRepo.findById(id);
     }
-    public void deleteById(ObjectId id){
+    public void deleteById(String id){
         userEntryRepo.deleteById(id);
     }
     public void updatePut(Users users){

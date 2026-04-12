@@ -50,6 +50,7 @@ public class SpringSecurity {
                         // Allow access to user registration endpoint (assuming it's /user/register)
                         .requestMatchers("/user/register").permitAll() // Make registration public
                         // Secure all other /user/** endpoints
+                        .requestMatchers("/user/login").permitAll()
                         .requestMatchers("/user/**").authenticated()
                         // Lock down all other requests
                         .anyRequest().authenticated()
