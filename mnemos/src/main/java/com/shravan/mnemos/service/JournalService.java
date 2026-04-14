@@ -1,36 +1,47 @@
 package com.shravan.mnemos.service;
 
 import com.shravan.mnemos.entity.JournalEntry;
+import com.shravan.mnemos.entity.Users;
 import com.shravan.mnemos.repository.JournalEntryRepo;
+import com.shravan.mnemos.repository.UserEntryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
-@Component
+@Service
 public class JournalService {
 
     @Autowired
     private JournalEntryRepo journalEntryRepo;
-
     @Autowired
-    private UserService userService; // Assuming UserService is still needed for other operations
+    private UserEntryRepo userEntryRepo;
+    @Autowired
+    private UserService userService;
 
-    public JournalEntry saveItAll(JournalEntry journalEntry) {
-        return journalEntryRepo.save(journalEntry);
+    @Transactional
+    public void saveEntry(JournalEntry journalEntry, String userName) {
+        Users user = userEntryRepo.findByUserNameDirect(userName);
+        journalEntry.setUserId(user.getId());
+        journalEntry.setDate(LocalDateTime.now());
+        JournalEntry saved = journalEntryRepo.save(journalEntry);
+        user.getJournalEntries().add(saved);
+        userEntryRepo.save(user);
     }
 
-    // New method to fetch journal entries for a specific user
-    public List<JournalEntry> findByUserName(String userName) {
-        return journalEntryRepo.findByUserName(userName);
+    // ✅ used by GET /journal — returns all journals for this user
+    public List<JournalEntry> getAllEntriesByUserName(String userName) {
+        Users user = userEntryRepo.findByUserNameDirect(userName);
+        return user.getJournalEntries();
     }
 
-    // Removed the insecure getAll() method to prevent data leakage.
-    // If getAll() was used elsewhere, those usages would need to be refactored.
-    // public List<JournalEntry> getAll() {
-    //     return journalEntryRepo.findAll();
-    // }
+    // ✅ used by DELETE, PUT, GET /{id} — for ownership check
+    public String getUserIdByUsername(String userName) {
+        Users user = userEntryRepo.findByUserNameDirect(userName);
+        return user.getId();
+    }
 
     public Optional<JournalEntry> findById(String id) {
         return journalEntryRepo.findById(id);

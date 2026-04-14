@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,7 +62,6 @@ public class UserController {
 
             // Now, update the fields of the 'userInDb' object.
             // Note: The 'userDetailsFromRequest.getPassword()' will be hashed by userService.saveItAll().
-            // You can update the username as well if that's intended.
             userInDb.setUserName(userDetailsFromRequest.getUserName());
             userInDb.setPassword(userDetailsFromRequest.getPassword());
 

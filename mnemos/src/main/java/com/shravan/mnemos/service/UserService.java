@@ -2,7 +2,6 @@ package com.shravan.mnemos.service;
 
 import com.shravan.mnemos.entity.Users;
 import com.shravan.mnemos.repository.UserEntryRepo;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
