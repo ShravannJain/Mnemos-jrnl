@@ -4,10 +4,8 @@ const api = axios.create({
   baseURL: '',  // vite proxy handles /journal and /user → localhost:8080
   headers: { 'Content-Type': 'application/json' },
 })
-export const loginUser = async ({ userName, password }) => {
-  const res = await axios.post('/user/login', { userName, password })
-  return res.data
-}
+// journal.js — make consistent
+export const loginUser = ({ userName, password }) => axios.post('/user/login', { userName, password })
 
 // Add a request interceptor to include authentication headers
 api.interceptors.request.use(config => {
