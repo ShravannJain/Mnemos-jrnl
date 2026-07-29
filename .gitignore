@@ -1,1 +1,48 @@
+# =========================
+
+# IDE files
+
+# =========================
+
 .idea/
+*.iml
+.vscode/
+
+# =========================
+
+# Java / Spring Boot
+
+# =========================
+
+mnemos/target/
+*.class
+*.log
+
+# =========================
+
+# Node.js / React / Vite
+
+# =========================
+
+mnemos-frontend/node_modules/
+mnemos-frontend/dist/
+
+# =========================
+
+# Environment variables
+
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+
+# Operating system files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
