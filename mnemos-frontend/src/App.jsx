@@ -123,7 +123,7 @@ export default function App() {
           onSave={handleSave}
           onDelete={handleDelete}
           saving={saving}
-        />
+      />
       </div>
     )
   }
