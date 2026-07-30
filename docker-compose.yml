@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./mnemos
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+  frontend:
+    build: ./mnemos-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
