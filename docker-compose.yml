@@ -1,6 +1,6 @@
 services:
   backend:
-    build: ./mnemos
+    build: ./mnemos-backend
     ports:
       - "8080:8080"
     environment:
